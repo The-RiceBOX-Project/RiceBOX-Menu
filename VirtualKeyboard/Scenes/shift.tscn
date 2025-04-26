@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf6o3vax36kke"]
+
+[ext_resource type="Texture2D" uid="uid://bkogd0aow8ejg" path="res://VirtualKeyboard/icons/shift.webp" id="1_0yjf2"]
+[ext_resource type="Script" path="res://VirtualKeyboard/Scripts/shift.gd" id="1_43s8w"]
+
+[node name="Shift" type="Button"]
+offset_right = 88.0
+offset_bottom = 88.0
+icon = ExtResource("1_0yjf2")
+expand_icon = true
+script = ExtResource("1_43s8w")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

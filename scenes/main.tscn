@@ -1,0 +1,895 @@
+[gd_scene load_steps=35 format=3 uid="uid://cfef2coa1s3cm"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_oc8ga"]
+[ext_resource type="Texture2D" uid="uid://cgbc1tidiwagd" path="res://assets/galabin.png" id="2_hris7"]
+[ext_resource type="Texture2D" uid="uid://xa6mpf3vje5l" path="res://assets/DefaultBackground.png" id="2_o412p"]
+[ext_resource type="Script" path="res://scripts/clock.gd" id="3_i5f4w"]
+[ext_resource type="Script" path="res://scripts/game_select.gd" id="6_dlo4q"]
+[ext_resource type="Script" path="res://scripts/updates.gd" id="9_ane0h"]
+[ext_resource type="Script" path="res://scripts/poweroff.gd" id="9_nng78"]
+[ext_resource type="Script" path="res://scripts/game_details.gd" id="9_ps7am"]
+[ext_resource type="Script" path="res://scripts/date&time.gd" id="9_u045i"]
+[ext_resource type="Script" path="res://scripts/background_settings.gd" id="10_wg613"]
+[ext_resource type="Script" path="res://addons/arduino/arduino.cs" id="10_x81oe"]
+[ext_resource type="Script" path="res://scripts/internet.gd" id="11_1jp4l"]
+[ext_resource type="PackedScene" uid="uid://y5rx0ss55tfs" path="res://scenes/background_option.tscn" id="11_6liek"]
+[ext_resource type="Script" path="res://scripts/settings.gd" id="11_wv1mg"]
+[ext_resource type="Texture2D" uid="uid://brsgy7ug4c2t4" path="res://backgrounds/image.png" id="12_2yhcj"]
+[ext_resource type="Texture2D" uid="uid://dsshj4t861a8b" path="res://backgrounds/RiceBox-background.png" id="13_c78ji"]
+[ext_resource type="Script" path="res://scripts/mount_usb.gd" id="13_roqrh"]
+[ext_resource type="Texture2D" uid="uid://dpp5edsf4iao7" path="res://backgrounds/DefaultBackground.png" id="14_1edvc"]
+[ext_resource type="PackedScene" uid="uid://cmofp31lpekmh" path="res://VirtualKeyboard/Scenes/virtual_keyboard.tscn" id="15_fave1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3jdl"]
+atlas = ExtResource("2_hris7")
+region = Rect2(227.9, 0, 183.1, 131.62)
+
+[sub_resource type="Animation" id="Animation_683q3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(445, 92)]
+}
+
+[sub_resource type="Animation" id="Animation_jlpgg"]
+resource_name = "slide"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(445, 92), Vector2(89, 92)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bq4q2"]
+_data = {
+"RESET": SubResource("Animation_683q3"),
+"slide": SubResource("Animation_jlpgg")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_cli0n"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yy0qe"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_oo1s8"]
+
+[sub_resource type="Animation" id="Animation_ecgmc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 650)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cover:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0aueu"]
+resource_name = "hide"
+length = 0.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(3, 1),
+"update": 0,
+"values": [Vector2(0, 100), Vector2(0, 651)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cover:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(3, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.352941), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uxt45"]
+resource_name = "summon"
+length = 0.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Vector2(0, 648), Vector2(0, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cover:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.352941)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vh4nv"]
+_data = {
+"RESET": SubResource("Animation_ecgmc"),
+"hide": SubResource("Animation_0aueu"),
+"summon": SubResource("Animation_uxt45")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_bh82j"]
+
+[sub_resource type="Animation" id="Animation_j0csq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ahhlt"]
+resource_name = "appear"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ki3b"]
+_data = {
+"RESET": SubResource("Animation_j0csq"),
+"appear": SubResource("Animation_ahhlt")
+}
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_oc8ga")
+
+[node name="Background" type="Sprite2D" parent="." groups=["Background"]]
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_o412p")
+
+[node name="Clock" type="Label" parent="."]
+process_mode = 3
+layout_mode = 0
+offset_left = 986.0
+offset_top = 16.0
+offset_right = 1114.0
+offset_bottom = 85.0
+theme_override_font_sizes/font_size = 50
+text = "00:00"
+script = ExtResource("3_i5f4w")
+
+[node name="Game_select" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_dlo4q")
+
+[node name="Back" type="TextureButton" parent="Game_select"]
+visible = false
+layout_mode = 0
+offset_right = 109.0
+offset_bottom = 104.0
+texture_normal = SubResource("AtlasTexture_b3jdl")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Game_select"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+offset_left = 445.0
+offset_top = 92.0
+offset_right = 1071.0
+offset_bottom = 348.0
+size_flags_horizontal = 3
+theme_override_constants/separation = 100
+
+[node name="Slide" type="AnimationPlayer" parent="Game_select"]
+libraries = {
+"": SubResource("AnimationLibrary_bq4q2")
+}
+
+[node name="Timer" type="Timer" parent="Game_select"]
+wait_time = 3.0
+autostart = true
+
+[node name="Settings" type="Control" parent="."]
+process_mode = 2
+z_index = 2
+anchors_preset = 0
+offset_top = 650.0
+offset_right = 40.0
+offset_bottom = 690.0
+script = ExtResource("11_wv1mg")
+
+[node name="Cover" type="MeshInstance2D" parent="Settings"]
+self_modulate = Color(0, 0, 0, 0)
+z_index = -1
+position = Vector2(518, 218.5)
+scale = Vector2(2348, 2263)
+mesh = SubResource("BoxMesh_cli0n")
+metadata/_edit_lock_ = true
+
+[node name="Background" type="MeshInstance2D" parent="Settings"]
+self_modulate = Color(0.188235, 0.0352941, 0.141176, 1)
+position = Vector2(575.75, 273.75)
+scale = Vector2(1152.5, 548.5)
+mesh = SubResource("BoxMesh_yy0qe")
+metadata/_edit_lock_ = true
+
+[node name="Devider" type="MeshInstance2D" parent="Settings"]
+position = Vector2(576, 49.0001)
+scale = Vector2(1152, -1.99999)
+mesh = SubResource("BoxMesh_oo1s8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Settings"]
+libraries = {
+"": SubResource("AnimationLibrary_vh4nv")
+}
+
+[node name="Buttons" type="HBoxContainer" parent="Settings"]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 40.0
+scale = Vector2(1.2, 1.2)
+
+[node name="Internet" type="Button" parent="Settings/Buttons"]
+layout_mode = 2
+text = "  Internet  "
+
+[node name="Date&Time" type="Button" parent="Settings/Buttons"]
+layout_mode = 2
+text = "Clock"
+
+[node name="Background" type="Button" parent="Settings/Buttons"]
+layout_mode = 2
+text = "Background"
+
+[node name="Updates" type="Button" parent="Settings/Buttons"]
+layout_mode = 2
+text = "System Update"
+
+[node name="Poweroff" type="Button" parent="Settings/Buttons"]
+layout_mode = 2
+text = "Shutdown"
+
+[node name="Internet" type="Control" parent="Settings"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_1jp4l")
+
+[node name="Popup" type="Control" parent="Settings/Internet"]
+visible = false
+z_index = 1
+anchors_preset = 0
+offset_left = 566.0
+offset_top = 305.0
+offset_right = 606.0
+offset_bottom = 345.0
+
+[node name="Border" type="MeshInstance2D" parent="Settings/Internet/Popup"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-1, 14)
+scale = Vector2(500, 300)
+mesh = SubResource("BoxMesh_bh82j")
+
+[node name="Border2" type="MeshInstance2D" parent="Settings/Internet/Popup"]
+self_modulate = Color(0.285098, 0.0714905, 0.219359, 1)
+position = Vector2(-0.999939, 14)
+scale = Vector2(490, 290)
+mesh = SubResource("BoxMesh_bh82j")
+
+[node name="Back" type="Button" parent="Settings/Internet/Popup"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = -132.0
+offset_right = 244.0
+offset_bottom = -96.0
+focus_neighbor_top = NodePath("../Enter")
+focus_neighbor_bottom = NodePath("../PassField")
+focus_next = NodePath("../PassField")
+focus_previous = NodePath("../Enter")
+theme_override_font_sizes/font_size = 20
+text = "Back"
+
+[node name="Name" type="Label" parent="Settings/Internet/Popup"]
+layout_mode = 0
+offset_left = -221.0
+offset_top = -84.0
+offset_right = 217.0
+offset_bottom = -35.0
+text = "SSID"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Status" type="Label" parent="Settings/Internet/Popup"]
+layout_mode = 0
+offset_left = -234.0
+offset_top = -123.0
+offset_right = -133.0
+offset_bottom = -100.0
+
+[node name="Pass" type="Label" parent="Settings/Internet/Popup"]
+layout_mode = 0
+offset_left = -221.0
+offset_top = -24.0
+offset_right = 217.0
+offset_bottom = 25.0
+text = "Password:
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="PassField" type="LineEdit" parent="Settings/Internet/Popup"]
+layout_mode = 0
+offset_left = -214.0
+offset_top = 37.0
+offset_right = 214.0
+offset_bottom = 68.0
+focus_neighbor_top = NodePath("../Back")
+focus_neighbor_bottom = NodePath("../Enter")
+focus_next = NodePath("../Enter")
+focus_previous = NodePath("../Back")
+placeholder_text = "Type here"
+alignment = 1
+virtual_keyboard_type = 6
+secret = true
+
+[node name="Enter" type="Button" parent="Settings/Internet/Popup"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = 94.0
+offset_right = 40.0
+offset_bottom = 145.0
+focus_neighbor_top = NodePath("../PassField")
+focus_neighbor_bottom = NodePath("../Back")
+focus_next = NodePath("../Back")
+focus_previous = NodePath("../PassField")
+theme_override_font_sizes/font_size = 23
+text = "Enter"
+
+[node name="Anim" type="AnimationPlayer" parent="Settings/Internet/Popup"]
+libraries = {
+"": SubResource("AnimationLibrary_5ki3b")
+}
+
+[node name="InternetButtons" type="HBoxContainer" parent="Settings/Internet"]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 1152.0
+offset_bottom = 95.0
+theme_override_constants/separation = 2
+
+[node name="Search" type="Button" parent="Settings/Internet/InternetButtons"]
+layout_mode = 2
+text = "  Search  "
+
+[node name="Disconnect" type="Button" parent="Settings/Internet/InternetButtons"]
+layout_mode = 2
+text = "  Disconnect  "
+
+[node name="Internets" type="ScrollContainer" parent="Settings/Internet"]
+layout_mode = 0
+offset_top = 152.0
+offset_right = 1151.0
+offset_bottom = 547.0
+follow_focus = true
+horizontal_scroll_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Internet/Internets"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Status" type="Label" parent="Settings/Internet"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 897.0
+offset_top = 32.0
+offset_right = 1100.0
+offset_bottom = 67.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Status: Disconnected"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Info" type="Label" parent="Settings/Internet"]
+layout_mode = 0
+offset_top = 104.0
+offset_right = 1153.0
+offset_bottom = 141.0
+text = "     Network name                                                                                    Speed                 Signal           Bars                                                 BSSID"
+vertical_alignment = 1
+
+[node name="Results" type="Label" parent="Settings/Internet"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 182.0
+offset_top = 30.0
+offset_right = 392.0
+offset_bottom = 74.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 17
+vertical_alignment = 1
+
+[node name="Refresh" type="Timer" parent="Settings/Internet"]
+wait_time = 3.0
+autostart = true
+
+[node name="Updates" type="Control" parent="Settings"]
+visible = false
+anchors_preset = 0
+offset_top = 56.0
+offset_right = 1152.0
+offset_bottom = 552.0
+script = ExtResource("9_ane0h")
+
+[node name="Check_for_updates" type="Button" parent="Settings/Updates"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.5
+offset_right = 135.5
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Check for updates"
+
+[node name="error" type="Label" parent="Settings/Updates"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -14.0
+offset_right = 20.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+
+[node name="Updates" type="ScrollContainer" parent="Settings/Updates"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.0
+offset_top = -183.0
+offset_right = 576.0
+offset_bottom = 241.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Updates/Updates"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 70
+
+[node name="fetch_updates" type="HTTPRequest" parent="Settings/Updates"]
+
+[node name="UpdatingText" type="Label" parent="Settings/Updates"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -11.5
+offset_right = 104.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 21
+text = "Dowloading Version 0.0.0..."
+
+[node name="DownloadCompleted" type="VBoxContainer" parent="Settings/Updates"]
+visible = false
+layout_mode = 0
+offset_right = 1144.0
+offset_bottom = 496.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Settings/Updates/DownloadCompleted"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
+text = "Update 0.0.0 has been downloaded, please restart your console in order to apply it."
+
+[node name="Restart" type="Button" parent="Settings/Updates/DownloadCompleted"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Restart Now"
+
+[node name="Date&Time" type="Control" parent="Settings"]
+visible = false
+anchors_preset = 0
+offset_top = 56.0
+offset_right = 1152.0
+offset_bottom = 552.0
+script = ExtResource("9_u045i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Date&Time"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -64.0
+offset_right = 37.5
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Date&Time/VBoxContainer"]
+layout_mode = 2
+
+[node name="UpButtons" type="HBoxContainer" parent="Settings/Date&Time/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 45
+alignment = 1
+
+[node name="HoursUp" type="Button" parent="Settings/Date&Time/VBoxContainer/VBoxContainer/UpButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = " + "
+
+[node name="MinsUp" type="Button" parent="Settings/Date&Time/VBoxContainer/VBoxContainer/UpButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = " + "
+
+[node name="Time" type="Label" parent="Settings/Date&Time/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "00 : 00"
+horizontal_alignment = 1
+
+[node name="DownButtons" type="HBoxContainer" parent="Settings/Date&Time/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="HoursDown" type="Button" parent="Settings/Date&Time/VBoxContainer/VBoxContainer/DownButtons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../UpButtons/HoursUp")
+theme_override_font_sizes/font_size = 60
+text = " - "
+
+[node name="MinsDown" type="Button" parent="Settings/Date&Time/VBoxContainer/VBoxContainer/DownButtons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../UpButtons/MinsUp")
+theme_override_font_sizes/font_size = 60
+text = " - "
+
+[node name="Set" type="Button" parent="Settings/Date&Time/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Set Time"
+
+[node name="BackgroundSettings" type="Control" parent="Settings"]
+visible = false
+anchors_preset = 0
+offset_top = 56.0
+offset_right = 1152.0
+offset_bottom = 552.0
+script = ExtResource("10_wg613")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings/BackgroundSettings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="GridContainer" type="GridContainer" parent="Settings/BackgroundSettings/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 412
+theme_override_constants/v_separation = 250
+columns = 3
+
+[node name="Background_option" parent="Settings/BackgroundSettings/ScrollContainer/GridContainer" instance=ExtResource("11_6liek")]
+layout_mode = 2
+image = ExtResource("12_2yhcj")
+
+[node name="Background_option2" parent="Settings/BackgroundSettings/ScrollContainer/GridContainer" instance=ExtResource("11_6liek")]
+layout_mode = 2
+image = ExtResource("13_c78ji")
+
+[node name="Background_option3" parent="Settings/BackgroundSettings/ScrollContainer/GridContainer" instance=ExtResource("11_6liek")]
+layout_mode = 2
+image = ExtResource("14_1edvc")
+
+[node name="Poweroff" type="Control" parent="Settings"]
+visible = false
+anchors_preset = 0
+offset_top = 56.0
+offset_right = 1152.0
+offset_bottom = 552.0
+script = ExtResource("9_nng78")
+
+[node name="GridContainer" type="GridContainer" parent="Settings/Poweroff"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -33.0
+offset_right = 43.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 30
+
+[node name="Shutdown" type="Button" parent="Settings/Poweroff/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Shutdown"
+
+[node name="Restart" type="Button" parent="Settings/Poweroff/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Restart"
+
+[node name="Game_details" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 1024.0
+offset_bottom = 576.0
+script = ExtResource("9_ps7am")
+
+[node name="Game_icon" type="Sprite2D" parent="Game_details"]
+position = Vector2(161, 160.75)
+texture = ExtResource("2_hris7")
+
+[node name="Run" type="Button" parent="Game_details"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 360.0
+offset_right = 297.0
+offset_bottom = 423.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Back")
+focus_neighbor_bottom = NodePath(".")
+theme_override_font_sizes/font_size = 40
+text = "Play"
+
+[node name="Back" type="Button" parent="Game_details"]
+layout_mode = 0
+offset_left = 800.0
+offset_right = 896.0
+offset_bottom = 36.0
+focus_neighbor_left = NodePath("../Run")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Run")
+theme_override_font_sizes/font_size = 20
+text = "Back"
+
+[node name="Delete" type="Button" parent="Game_details"]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 360.0
+offset_right = 832.0
+offset_bottom = 423.0
+focus_neighbor_left = NodePath("../Download_or_Update")
+focus_neighbor_top = NodePath("../Back")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+theme_override_font_sizes/font_size = 40
+text = "Delete"
+
+[node name="Download_or_Update" type="Button" parent="Game_details"]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 360.0
+offset_right = 563.0
+offset_bottom = 423.0
+focus_neighbor_left = NodePath("../Run")
+focus_neighbor_top = NodePath("../Back")
+focus_neighbor_bottom = NodePath(".")
+theme_override_font_sizes/font_size = 40
+text = "Update
+"
+
+[node name="Name" type="Label" parent="Game_details"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 65.0
+offset_right = 829.0
+offset_bottom = 169.0
+theme_override_font_sizes/font_size = 50
+text = "Lorum Ipson"
+horizontal_alignment = 2
+
+[node name="Description" type="Label" parent="Game_details"]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 122.0
+offset_right = 868.0
+offset_bottom = 250.0
+theme_override_font_sizes/font_size = 26
+text = "Lorum Ipson"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Creators" type="Label" parent="Game_details"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 268.0
+offset_right = 829.0
+offset_bottom = 396.0
+theme_override_font_sizes/font_size = 20
+text = "Creators: "
+horizontal_alignment = 2
+
+[node name="Version" type="Label" parent="Game_details"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 320.0
+offset_right = 829.0
+offset_bottom = 448.0
+theme_override_font_sizes/font_size = 20
+text = "1.1"
+horizontal_alignment = 2
+
+[node name="arduino" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("10_x81oe")
+PortName = "/dev/ttyACM0"
+
+[node name="MountUSB" type="Node" parent="."]
+script = ExtResource("13_roqrh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="TimeoutArduino" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="VirtualKeyboard" parent="." node_paths=PackedStringArray("textBox") instance=ExtResource("15_fave1")]
+process_mode = 3
+visible = false
+z_index = 3
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 448.0
+textBox = NodePath("../Settings/Internet/Popup/PassField")
+
+[connection signal="pressed" from="Game_select/Back" to="Game_select" method="_on_back_pressed"]
+[connection signal="timeout" from="Game_select/Timer" to="Game_select" method="_on_timer_timeout"]
+[connection signal="animation_finished" from="Settings/AnimationPlayer" to="Settings" method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="Settings/Buttons/Internet" to="Settings" method="_on_internet_pressed"]
+[connection signal="pressed" from="Settings/Buttons/Date&Time" to="Settings" method="_on_date_time_pressed"]
+[connection signal="pressed" from="Settings/Buttons/Background" to="Settings" method="_on_background_pressed"]
+[connection signal="pressed" from="Settings/Buttons/Updates" to="Settings" method="_on_updates_pressed"]
+[connection signal="pressed" from="Settings/Buttons/Poweroff" to="Settings" method="_on_poweroff_pressed"]
+[connection signal="pressed" from="Settings/Internet/Popup/Back" to="Settings/Internet" method="_on_back_pressed"]
+[connection signal="focus_entered" from="Settings/Internet/Popup/PassField" to="VirtualKeyboard" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Settings/Internet/Popup/PassField" to="VirtualKeyboard" method="_on_focus_exited"]
+[connection signal="gui_input" from="Settings/Internet/Popup/PassField" to="Settings/Internet" method="_on_pass_field_gui_input"]
+[connection signal="pressed" from="Settings/Internet/Popup/Enter" to="Settings/Internet" method="_on_enter_pressed"]
+[connection signal="pressed" from="Settings/Internet/InternetButtons/Search" to="Settings/Internet" method="_on_search_pressed"]
+[connection signal="pressed" from="Settings/Internet/InternetButtons/Disconnect" to="Settings/Internet" method="_on_disconnect_pressed"]
+[connection signal="timeout" from="Settings/Internet/Refresh" to="Settings/Internet" method="_on_refresh_timeout"]
+[connection signal="pressed" from="Settings/Updates/Check_for_updates" to="Settings/Updates" method="_on_check_for_updates_pressed"]
+[connection signal="request_completed" from="Settings/Updates/fetch_updates" to="Settings/Updates" method="_on_fetch_updates_request_completed"]
+[connection signal="pressed" from="Settings/Updates/DownloadCompleted/Restart" to="Settings/Poweroff" method="_on_restart_pressed"]
+[connection signal="pressed" from="Settings/Date&Time/VBoxContainer/VBoxContainer/UpButtons/HoursUp" to="Settings/Date&Time" method="_on_hours_up_pressed"]
+[connection signal="pressed" from="Settings/Date&Time/VBoxContainer/VBoxContainer/UpButtons/MinsUp" to="Settings/Date&Time" method="_on_mins_up_pressed"]
+[connection signal="pressed" from="Settings/Date&Time/VBoxContainer/VBoxContainer/DownButtons/HoursDown" to="Settings/Date&Time" method="_on_hours_down_pressed"]
+[connection signal="pressed" from="Settings/Date&Time/VBoxContainer/VBoxContainer/DownButtons/MinsDown" to="Settings/Date&Time" method="_on_mins_down_pressed"]
+[connection signal="pressed" from="Settings/Date&Time/VBoxContainer/Set" to="Settings/Date&Time" method="_on_set_pressed"]
+[connection signal="pressed" from="Settings/Poweroff/GridContainer/Shutdown" to="Settings/Poweroff" method="_on_shutdown_pressed"]
+[connection signal="pressed" from="Settings/Poweroff/GridContainer/Restart" to="Settings/Poweroff" method="_on_restart_pressed"]
+[connection signal="pressed" from="Game_details/Run" to="Game_details" method="_on_run_pressed"]
+[connection signal="pressed" from="Game_details/Back" to="Game_details" method="_on_back_pressed"]
+[connection signal="pressed" from="Game_details/Delete" to="Game_details" method="_on_delete_pressed"]
+[connection signal="pressed" from="Game_details/Download_or_Update" to="Game_details" method="_on_download_or_update_pressed"]
+[connection signal="DataRecieved" from="arduino" to="." method="_on_arduino_data_recieved"]
+[connection signal="timeout" from="Timer" to="MountUSB" method="_on_timer_timeout"]
+[connection signal="timeout" from="TimeoutArduino" to="." method="_on_timeout_arduino_timeout"]

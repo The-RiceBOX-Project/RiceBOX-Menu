@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bocxuhrwjba4i"]
+
+[ext_resource type="Script" path="res://VirtualKeyboard/Scripts/button.gd" id="1_4jvyg"]
+
+[node name="Space" type="Button"]
+offset_right = 440.0
+offset_bottom = 88.0
+text = " "
+script = ExtResource("1_4jvyg")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

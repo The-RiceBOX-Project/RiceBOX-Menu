@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8nm3yn4l3a86"]
+
+[ext_resource type="VideoStream" path="res://assets/Intro-animation.ogv" id="1_fpxhf"]
+[ext_resource type="Script" path="res://scripts/splash_screen.gd" id="1_ganfc"]
+
+[node name="SplashScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ganfc")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_left = -32.0
+offset_right = 1176.0
+offset_bottom = 647.0
+stream = ExtResource("1_fpxhf")
+autoplay = true
+expand = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

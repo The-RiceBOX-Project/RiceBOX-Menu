@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://pu3pclbggmwp"]
+
+[ext_resource type="Script" path="res://VirtualKeyboard/Scripts/button.gd" id="1_sx6wi"]
+
+[node name="Exit" type="Button"]
+offset_left = 124.0
+offset_top = 352.0
+offset_right = 235.0
+offset_bottom = 440.0
+focus_neighbor_left = NodePath("../Shift")
+theme_override_font_sizes/font_size = 50
+text = "EXIT"
+script = ExtResource("1_sx6wi")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

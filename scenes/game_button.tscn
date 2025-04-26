@@ -1,0 +1,145 @@
+[gd_scene load_steps=9 format=3 uid="uid://dfsf2f6khabl7"]
+
+[ext_resource type="Script" path="res://scripts/game_button.gd" id="1_5ortt"]
+[ext_resource type="Texture2D" uid="uid://cgbc1tidiwagd" path="res://assets/galabin.png" id="1_c65cn"]
+[ext_resource type="Texture2D" uid="uid://b2qc5o4n37qo2" path="res://assets/usb.png" id="3_xyyfa"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ik0qn"]
+
+[sub_resource type="Animation" id="Animation_vrjdx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_km31g"]
+resource_name = "appear"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.501961)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.6, 0.6)]
+}
+
+[sub_resource type="Animation" id="Animation_6b18p"]
+resource_name = "unselect"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.6, 0.6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wcqki"]
+_data = {
+"RESET": SubResource("Animation_vrjdx"),
+"appear": SubResource("Animation_km31g"),
+"unselect": SubResource("Animation_6b18p")
+}
+
+[node name="Game_Button" type="TextureButton"]
+custom_minimum_size = Vector2(256, 256)
+offset_right = 256.0
+offset_bottom = 256.0
+pivot_offset = Vector2(128, 128)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("1_c65cn")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_5ortt")
+
+[node name="USB" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = 210.0
+offset_top = -13.0
+offset_right = 228.0
+offset_bottom = 5.0
+scale = Vector2(3.33, 3.33)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="USB"]
+z_index = 1
+position = Vector2(8.75028, 8.76021)
+scale = Vector2(16.25, 16.25)
+mesh = SubResource("SphereMesh_ik0qn")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="USB"]
+self_modulate = Color(0, 0, 1, 1)
+position = Vector2(8.75028, 8.76021)
+scale = Vector2(18.5204, 18.5204)
+mesh = SubResource("SphereMesh_ik0qn")
+
+[node name="Usb" type="Sprite2D" parent="USB"]
+self_modulate = Color(0, 0, 1, 1)
+z_index = 1
+position = Vector2(9, 9)
+scale = Vector2(0.0275391, 0.0275391)
+texture = ExtResource("3_xyyfa")
+
+[node name="Selection" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wcqki")
+}
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

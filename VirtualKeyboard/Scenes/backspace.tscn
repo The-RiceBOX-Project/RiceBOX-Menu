@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj52uk17n0onm"]
+
+[ext_resource type="Script" path="res://VirtualKeyboard/Scripts/backspace.gd" id="1_00cvg"]
+[ext_resource type="Texture2D" uid="uid://b7yn377sppfco" path="res://VirtualKeyboard/icons/backspace.png" id="1_d43s0"]
+
+[node name="Backspace" type="Button"]
+offset_right = 88.0
+offset_bottom = 88.0
+icon = ExtResource("1_d43s0")
+expand_icon = true
+script = ExtResource("1_00cvg")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
